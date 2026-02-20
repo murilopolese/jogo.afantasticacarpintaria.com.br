@@ -18,6 +18,7 @@ import { TutorialFinalStep } from './components/TutorialFinalStep';
 import Game from './components/Game';
 
 import trave from './assets/trave.png';
+import DesktopOnly from './components/ui/DesktopOnly';
 
 declare global {
   interface Window {
@@ -86,6 +87,11 @@ const App: React.FC = () => {
   const [currentTimeout, setCurrentTimeout] = useState(60 * 1000);
   const navigate = useNavigate();
 
+  const isDesktop = typeof navigator !== 'undefined' &&
+    !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    );
+
   const goToTutorial = () => navigate('/tutorial');
   const goToTutorial1 = () => navigate('/tutorial-1');
   const goToTutorial2 = () => navigate('/tutorial-2');
@@ -99,6 +105,15 @@ const App: React.FC = () => {
     setCurrentTimeout( (prev) => prev - 10000 );
     navigate('/jogo');
   };
+
+  if (!isDesktop) {
+    // Render a fallback message when the user is not on a desktop.
+    return <DesktopOnly
+            title="Acesso apenas em Desktop"
+            callToAction="Por favor, abra no seu computador"
+            description="Esta aplicação foi desenvolvida para navegadores de desktop. Se você está usando um dispositivo móvel, por favor utilize um computador."
+          />;
+  }
 
   return (
     <Routes>
