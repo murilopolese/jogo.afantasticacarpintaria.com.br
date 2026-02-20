@@ -81,7 +81,7 @@ export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate
           {counter === target ? (
             <div className="button"><Rugged onClick={() => setVisible(false)}>PRONTO!</Rugged></div>
           ) : on ? (
-            <p className="callToAction">Extrudindo...</p>
+            <p className="callToAction">Derretendo...</p>
           ) : (
             <p className="callToAction">
               Clique na extrusora para iniciar a produção!

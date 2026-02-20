@@ -11,6 +11,7 @@ import rect3 from '../assets/rect3.svg'
 import rect4 from '../assets/rect4.svg'
 import rect5 from '../assets/rect5.svg'
 import patrocinio from '../assets/patrocinio.png'
+import lettering from '../assets/lettering.png'
 
 type HomeProps = {
   onNavigate: () => void;
@@ -45,7 +46,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </div>
 
       <div className={`content ${fadeClass}`}>
-        <div className="lettering" />
+        <img className="lettering" src={lettering} />
 
         <div className="callToAction">
           <div className="text">

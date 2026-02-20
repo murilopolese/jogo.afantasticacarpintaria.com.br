@@ -6,10 +6,30 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
-  min-height: 100%;
+  height: 100%;
+  width: 85%;
   background: #fbf2d7ff;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards ;
+}
+
+.gameContainer .side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.gameContainer .side.left {
+  left: 0;
+  animation: slideInFromLeft 0.5s forwards;
+  transform: translate(-100%, 0%);
+}
+.gameContainer .side.right {
+  right: 0;
+  animation: slideInFromRight 0.5s forwards;
+  transform: translate(100%, 0%);
 }
 
 .gameContainer .steps {
@@ -17,10 +37,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  column-gap: 100px;
-  row-gap: 60px;
-  max-width: 1200px;
-  padding: 0 60px;
+  width: 70%;
 }
 
 .gameContainer .step {
@@ -29,7 +46,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 250px;
+  width: 25%;
   gap: 40px;
 }
 
@@ -38,20 +55,11 @@
   cursor: not-allowed !important;
 }
 
-.gameContainer .timer,
-.gameContainer .clickable,
-.gameContainer .progress,
-.gameContainer .text,
-.gameContainer .mission,
-.gameContainer .button,
-.gameContainer .background {
-  box-sizing: border-box;
-}
 
 .gameContainer .timer {
   width: 70px;
   height: 70px;
-  font-size: 28px;
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,6 +99,11 @@
   opacity: 0;
 }
 
+.gameContainer .mission {
+  width: 30%;
+  padding: 0 3%;
+}
+
 .gameContainer .mission .timer {
   animation: none;
   opacity: 1;
@@ -101,7 +114,7 @@
 }
 
 .gameContainer .number {
-  font-size: 28px;
+  font-size: 24px;
   font-family: 'Archivo', sans-serif;
   font-weight: 900;
   color: #000;
@@ -110,7 +123,7 @@
 .gameContainer .step .clickable {
   height: 250px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .gameContainer .step .clickable.on {
@@ -133,15 +146,17 @@
   font-weight: 700;
   color: #000;
   text-align: center;
+  width: 80%;
 }
 
 /* Background for steps container */
-.gameContainer .background {
+.gameContainer .steps > .background {
   position: absolute;
   left: 0;
   right: 0;
-  top: 140px;
   width: 100%;
+  top: 50%;
+  transform: translateY(-60%);
   height: 250px;
 }
 
@@ -150,14 +165,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 30%;
   max-width: 400px;
   gap: 40px;
 }
 
 .gameContainer .requirements,
 .gameContainer .callToAction {
-  font-size: 28px;
+  font-size: 24px;
   font-family: 'Archivo', sans-serif;
   font-weight: 700;
   color: #000;

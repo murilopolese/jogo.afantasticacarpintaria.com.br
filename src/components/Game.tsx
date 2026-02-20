@@ -11,6 +11,9 @@ import clock from '../assets/clock.png';
 import Rugged from './ui/Rugged';
 import ProgressBar from './ui/ProgressBar';
 
+import sideL from '../assets/sidel.png';
+import sideR from '../assets/sider.png';
+
 /* ------------------------------------------------------------------ */
 /*  Constants – keep the original ones for shred / extruder logic   */
 const COLLECTOR_CAPACITY = 750;
@@ -129,6 +132,8 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver, missionTimeout }) =>
 
   return (
     <div className="gameContainer">
+      <img src={sideL} className="side left" />
+      <img src={sideR} className="side right" />
       {/* Steps section */}
       <div className="steps">
         <img src={background} className='background' />
@@ -138,7 +143,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver, missionTimeout }) =>
           <div className="timer invisibleTimer" />
           <img src={coletor} className="clickable" onClick={handleClickCollected} />
           <ProgressBar percent={Math.min((collected / COLLECTOR_CAPACITY) * 100, 100)} />
-          <div className="text">{collected} tampinhas coletadas.</div>
+          <div className="text">{collected} <br/> tampinhas coletadas</div>
         </div>
 
         {/* Shredder step */}
@@ -151,7 +156,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver, missionTimeout }) =>
                className={`clickable ${shredOn ? 'on' : ''} ${isShredderAvailable?'':'unavailable'}`}
                onClick={handleClickShredded} />
           <ProgressBar percent={Math.min((shredded / SHREDDER_CAPACITY) * 100, 100)} />
-          <div className="text">{shredded} tampinhas trituradas.</div>
+          <div className="text">{shredded} <br/> tampinhas trituradas</div>
         </div>
 
         {/* Extruder step */}
@@ -164,7 +169,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver, missionTimeout }) =>
                className={`clickable ${extrudOn ? 'on' : ''} ${isExtruderAvailable?'':'unavailable'}`}
                onClick={handleClickExtruder} />
           <ProgressBar percent={Math.min((ripas / EXTRUDER_CAPACITY ) * 100, 100)} />
-          <div className="text">{ripas} ripas prontas</div>
+          <div className="text">{ripas} <br/> {ripas == 1 ? 'ripa' : 'ripas'} prontas</div>
         </div>
       </div>
 

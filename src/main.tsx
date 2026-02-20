@@ -1,6 +1,6 @@
 // src/main.tsx
 
-import { StrictMode } from 'react';
+import { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   HashRouter,
@@ -16,9 +16,28 @@ import { TutorialStep } from './components/TutoriaStep';
 import { TutorialNextStep } from './components/TutorialNextStep';
 import { TutorialFinalStep } from './components/TutorialFinalStep';
 import Game from './components/Game';
-import { useState } from 'react';
 
-import trave from './assets/trave.png'
+// Import all assets for preloading and illustration usage.
+import background from './assets/background.png';
+import clock from './assets/clock.png';
+import coletor from './assets/coletor.png';
+import corner1 from './assets/corner1.png';
+import corner2 from './assets/corner2.png';
+import corner3 from './assets/corner3.png';
+import corner4 from './assets/corner4.png';
+import extrusora from './assets/extrusora.png';
+import lettering from './assets/lettering.png';
+import logo from './assets/logo.png';
+import patrocinio from './assets/patrocinio.png';
+import rec3 from './assets/rec3.png';
+import rect1 from './assets/rect1.svg';
+import rect2 from './assets/rect2.svg';
+import rect3 from './assets/rect3.svg';
+import rect4png from './assets/rect4.png';
+import rect4svg from './assets/rect4.svg';
+import rect5 from './assets/rect5.svg';
+import trituradora from './assets/trituradora.png';
+import trave from './assets/trave.png';
 
 declare global {
   interface Window {
@@ -49,7 +68,6 @@ const mission = {
     description: "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido. Boa sorte!",
     illustrationSrc: trave
 }
-
 
 const gameover = {
   title: "Desafio Não Concluído",
@@ -85,8 +103,8 @@ const M: React.FC<MissionProps> = ({
 );
 
 const App: React.FC = () => {
-  const [currentTimeout, setCurrentTimeout] = useState(60*1000)
-  const navigate = useNavigate();  
+  const [currentTimeout, setCurrentTimeout] = useState(60 * 1000);
+  const navigate = useNavigate();
 
   const goToTutorial = () => navigate('/tutorial');
   const goToTutorial1 = () => navigate('/tutorial-1');
@@ -98,9 +116,9 @@ const App: React.FC = () => {
   const goToGame = () => navigate('/jogo');
   const goToGameOver = () => navigate('/tente-outra-vez');
   const goToNextMission = () => {
-    setCurrentTimeout(prev => prev - 10000 )
+    setCurrentTimeout( (prev) => prev - 10000 );
     navigate('/jogo');
-  }
+  };
 
   return (
     <Routes>
