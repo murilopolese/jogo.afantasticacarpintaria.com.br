@@ -2,7 +2,6 @@ import { type MissionProps } from './ui/Mission';
 import Mission from './ui/Mission';
 import { useEffect, useRef } from 'react';
 
-// const colors = ['#ff0', '#f00', '#0f0', '#00f', '#ff69b4', '#ffa500', '#8a2be2'];
 const colors = ['#c18257', '#e4afb3', '#5ba170', '#edb94c', '#6578b6', '#b42413', '#fff'];
 
 // Simple confetti component that renders random falling particles.
