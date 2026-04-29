@@ -8,7 +8,7 @@ import corner3 from '../../assets/corner3.png';
 import corner4 from '../../assets/corner4.png';
 import Rugged from './Rugged';
 
-type MissionProps = {
+export type MissionProps = {
   onNavigate: () => void;
 
   illustrationSrc: string;

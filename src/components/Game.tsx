@@ -185,7 +185,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver, missionTimeout }) =>
         </div>
 
         <div className="callToAction">
-          Você consegue produzir essa quantidade em {Math.floor(missionTimeout/1000)} segundos?
+          Você consegue produzir isso em {Math.floor(missionTimeout/1000)} segundos?
         </div>
 
         {/* Rugged button – starts the global countdown or delivers if ready */}

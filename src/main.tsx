@@ -17,6 +17,9 @@ import { TutorialNextStep } from './components/TutorialNextStep';
 import { TutorialFinalStep } from './components/TutorialFinalStep';
 import Game from './components/Game';
 
+// Import RecordScreen for the record route
+import { RecordScreen } from './components/Record';
+
 import trave from './assets/trave.png';
 import DesktopOnly from './components/ui/DesktopOnly';
 
@@ -44,17 +47,26 @@ const tutorial = [
 ];
 
 const mission = {
-    title: "Nova Encomenda!",
-    callToAction: "Você conseguiu! Tem mais trabalho e menos tempo.",
-    description: "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido. Boa sorte!",
+    title: "Ótimo trabalho!",
+    callToAction: "A próxima etapa está chegando.",
+    description: "A demanda aumentou consideravelmente e o relógio corre ainda mais rápido. Vamos lá!",
     illustrationSrc: trave
 }
 
 const gameover = {
-  title: "Desafio Não Concluído",
-  callToAction: "Não desista – você ainda pode tentar!",
+  title: "Não desista!",
+  callToAction: "Desafio Não Concluído",
   description:
-    "Você não conseguiu entregar a trave dentro do tempo estipulado, mas lembre-se: cada tentativa é uma oportunidade de melhorar. Tente novamente e veja o que você consegue alcançar!",
+    "A entrega não aconteceu no tempo estipulado. Use essa experiência para acelerar o ritmo e tente novamente com mais foco e estratégia!",
+  illustrationSrc: trave
+};
+
+// New record message for winning within 20 seconds
+const record = {
+  title: "Parabéns!",
+  callToAction: "Recorde de entrega",
+  description:
+    "Você bateu o recorde de entrega.\nA velocidade e a precisão são impressionantes!",
   illustrationSrc: trave
 };
 
@@ -65,6 +77,7 @@ type MissionProps = {
   title: string;
   callToAction: string;
   description: string;
+  buttonLabel?: string;
 };
 
 const M: React.FC<MissionProps> = ({
@@ -73,6 +86,7 @@ const M: React.FC<MissionProps> = ({
   description,
   callToAction,
   illustrationSrc,
+  buttonLabel
 }: MissionProps) => (
   <Mission
     onNavigate={onNavigate}
@@ -80,6 +94,7 @@ const M: React.FC<MissionProps> = ({
     description={description}
     callToAction={callToAction}
     illustrationSrc={illustrationSrc}
+    buttonLabel={buttonLabel}
   />
 );
 
@@ -98,11 +113,19 @@ const App: React.FC = () => {
   const goToTutorial3 = () => navigate('/tutorial-3');
   const goToTutorial4 = () => navigate('/tutorial-4');
 
-  const goToVictory = () => navigate('/vitoria');
+  // New result navigation that decides between victory and record
+  const handleResultNavigation = () => {
+    if (currentTimeout <= 30000) {
+      navigate('/record');
+    } else {
+      navigate('/vitoria');
+    }
+  };
+
   const goToGame = () => navigate('/jogo');
   const goToGameOver = () => navigate('/tente-outra-vez');
   const goToNextMission = () => {
-    setCurrentTimeout( (prev) => prev - 10000 );
+    setCurrentTimeout((prev) => prev - 10000);
     navigate('/jogo');
   };
 
@@ -130,7 +153,7 @@ const App: React.FC = () => {
         element={
           <Game
             onGameOver={goToGameOver}
-            onDeliver={goToVictory}
+            onDeliver={handleResultNavigation}
             missionTimeout={currentTimeout}
           />
         }
@@ -138,6 +161,11 @@ const App: React.FC = () => {
 
       <Route path="/vitoria" element={<M onNavigate={goToNextMission} {...mission} />} />
       <Route path="/tente-outra-vez" element={<M onNavigate={goToGame} {...gameover} />} />
+      {/* Use RecordScreen for record route to show confetti */}
+      <Route
+        path="/record"
+        element={<RecordScreen buttonLabel="RECOMEÇAR" onNavigate={() => navigate('/')} {...record} />}
+      />
     </Routes>
   );
 };
