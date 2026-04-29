@@ -129,8 +129,10 @@ const App: React.FC = () => {
     navigate('/jogo');
   };
 
-  if (!isDesktop) {
-    // Render a fallback message when the user is not on a desktop.
+  const isMobileWidth = typeof window !== 'undefined' && window.innerWidth < 1000;
+
+if (!isDesktop || isMobileWidth) {
+    // Render a fallback message when the user is not on a desktop or screen width is less than 1000px.
     return <DesktopOnly
             title="Acesso apenas em Desktop"
             callToAction="Por favor, abra no seu computador"
