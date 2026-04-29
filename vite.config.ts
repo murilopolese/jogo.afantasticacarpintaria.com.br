@@ -6,5 +6,5 @@ export default defineConfig({
   plugins: [
     react()
   ],
-  base: "/a-fantastica-carpintaria-jogo-circular/"
+  // base: "/a-fantastica-carpintaria-jogo-circular/"
 })
